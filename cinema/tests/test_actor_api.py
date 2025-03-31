@@ -15,6 +15,8 @@ class ActorApiTests(TestCase):
     def test_get_actors(self):
         response = self.client.get("/api/cinema/actors/")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        print(response.data)  # Подивись, що саме повертає API
+        print(response.content)  # Дивись, чи це JSON чи щось інше
         actors_full_names = [actor["full_name"] for actor in response.data]
         self.assertEqual(
             sorted(actors_full_names), ["George Clooney", "Keanu Reeves"]
